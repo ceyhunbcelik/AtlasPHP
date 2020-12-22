@@ -8,6 +8,8 @@
 
     function SELECT($values){
 
+      $this -> sql = '';
+
       $table = [];
       $column = [];
 
@@ -23,9 +25,13 @@
 
     }
 
-    //function
+    function WHERE($value){
 
-    function all(){
+      $this -> sql .= ' WHERE ' . $value;
+      return $this;
+    }
+
+    function ALL(){
       return $this -> sql;
     }
 
