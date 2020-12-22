@@ -1,12 +1,12 @@
 <?php
 
-  class SQLClass{
+  class SQLStatements{
 
     function __construct(){
       $this -> sql = '';
     }
 
-    function select($values){
+    function SELECT($values){
 
       $table = [];
       $column = [];
@@ -23,10 +23,7 @@
 
     }
 
-    function from($tables){
-      $this -> sql .= 'FROM ' . $tables;
-      return $this;
-    }
+    //function
 
     function all(){
       return $this -> sql;

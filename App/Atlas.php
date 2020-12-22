@@ -41,7 +41,21 @@
     return $protocol . '://' . $_SERVER['HTTP_HOST'] . $script;
   }
 
-  require_once('Classes/SQLClass.php');
-  $sql = new SQLClass();
+  // Classes
+  foreach(glob(PATH . '/App/Classes/*.php') as $ClassFile){
+    require_once($ClassFile);
+  }
+
+  // Helpers
+  foreach(glob(PATH . '/App/Helpers/*.php') as $helperFile){
+    require_once($helperFile);
+  }
+
+  # Define SQLStatements
+  $sql = new SQLStatements();
+
+  // Database
+
+
 
  ?>

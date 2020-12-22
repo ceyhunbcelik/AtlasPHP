@@ -1,19 +1,20 @@
 <?php
 
-  require_once('App/Base.php');
+  $_GET = array_map(function($get){
+    return htmlspecialchars(trim($get));
+  }, $_GET);
 
-  $data = $sql -> select([
-                    'categories c' => [
-                      'c.name',
-                      'c.id'
-                    ],
-                    'posts p' => [
-                      'p.title',
-                      'p.date'
-                    ]
-                  ])
-              -> all();
+  require_once('App/Atlas.php');
 
-  echo '<br>'.$data;
+  $route = route();
+
+  # Disallowed Route Direct
+  if($route[0] == 'direct') Header('Location:'. $DEVELOPMENT .'/');
+
+  # Page
+  if(glob(controller($route[0])))
+    require_once(controller($route[0]));
+  else
+    require_once(controller('direct'));
 
 ?>
