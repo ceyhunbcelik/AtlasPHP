@@ -8,7 +8,7 @@
   define('URL', url());
 
   $tmp = explode('/', PATH);
-  $DEVELOPMENT = SUBFOLDER == true ? end($tmp) : null;
+  $DEVELOPMENT = SUBFOLDER == true ? '/' . end($tmp) : null;
 
   function subfolder(){
     return dirname($_SERVER['SCRIPT_NAME']) === '\\' || dirname($_SERVER['SCRIPT_NAME']) == '/' ? 0 : 1;
@@ -55,6 +55,7 @@
   $sql = new SQLStatements();
 
   // Database
+  require_once(PATH . '/App/MySQL.php');
 
 
 
