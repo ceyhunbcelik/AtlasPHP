@@ -75,8 +75,136 @@ return [
   ];
 ```
 
-### Fetch Data(FETCH QUERY)
+### SELECT
+```php
+  $select = $sql -> SELECT([
+                    'categories c' => [
+                      'c.name',
+                      'c.id'
+                    ],
+                    'posts p' => [
+                      'p.title',
+                      'p.date'
+                    ]
+                  ])
+```
+```
+SELECT c.name, c.id, p.title, p.date FROM categories c, posts p
+```
 
+### WHERE
+```php
+  $where = $sql -> SELECT([
+                    'categories c' => [
+                      'c.name',
+                      'c.id'
+                    ],
+                    'posts p' => [
+                      'p.title',
+                      'p.date'
+                    ]
+                  ])
+                -> WHERE('c.id == p.id && c.title == p.title')
+```
+
+```
+SELECT c.name, c.id, p.title, p.date FROM categories c, posts p WHERE c.id == p.id && c.title == p.title
+```
+
+### LIKE
+```php
+  $like = $sql -> SELECT([
+                    'categories' => [
+                      '*'
+                    ]
+                  ])
+               -> WHERE('')
+               -> LIKE('name', 'hun%', 'OR')
+               -> LIKE('surname', 'lik%')
+               -> LIMIT('0', '5')
+```
+
+```
+SELECT * FROM categories WHERE name LIKE 'hun%' OR surname LIKE 'lik%' LIMIT 0,5
+```
+
+### GROUP BY
+```php
+  $group_by = $sql -> SELECT([
+                        'categories c' => [
+                          'c.name',
+                          'c.id'
+                        ],
+                        'posts p' => [
+                          'p.title',
+                          'p.date'
+                        ]
+                      ])
+                   -> GROUP_BY('p.title')
+```
+
+```
+SELECT c.name, c.id, p.title, p.date FROM categories c, posts p GROUP BY p.title
+
+```
+
+### ORDER BY
+```php
+  $order_by = $sql -> SELECT([
+                        'categories c' => [
+                          'c.name',
+                          'c.id'
+                        ],
+                        'posts p' => [
+                          'p.title',
+                          'p.date'
+                        ]
+                      ])
+                   -> GROUP_BY('p.title')
+                   -> ORDER_BY('c.id', 'DESC')
+```
+
+```
+SELECT c.name, c.id, p.title, p.date FROM categories c, posts p GROUP BY p.title ORDER BY c.id DESC
+```
+
+### BETWEEN
+```php
+  $between = $sql -> SELECT([
+                      'table' => [
+                        '*'
+                      ]
+                     ])
+                  -> where('price')
+                  -> BETWEEN('10', '20', 'NOT')
+```
+
+```
+SELECT * FROM table WHERE price NOT BETWEEN 10 AND 20
+```
+
+### JOIN
+```php
+   $join = $sql -> SELECT([
+                    'Orders' => [
+                      'Orders.order_id',
+                      'Customers.CustomerName',
+                      'Orders.OrderDate'
+                    ]
+                   ])
+                -> INNER_JOIN('Customers')
+                -> ON(
+                    'Orders.CustomerID',
+                    'Customers.CustomerID',
+                    'FIND'
+                   )
+```
+
+```
+SELECT Orders.order_id, Customers.CustomerName, Orders.OrderDate FROM Orders INNER JOIN Customers ON FIND_IN_SET(Orders.CustomerID, Customers.CustomerID)
+```
+
+### Fetch Data(QUERY FETCH)
 ``` php
   $select = $sql -> SELECT([
                     'categories c' => [
@@ -91,8 +219,7 @@ return [
                  -> QUERY_FETCH();
 ```
 
-### Fetch Data(FETCH QUERY)
-
+### Fetch Data(QUERY FETCHALL)
 ``` php
   $select = $sql -> SELECT([
                     'categories c' => [
