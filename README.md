@@ -74,3 +74,35 @@ return [
     'pass' => 'root'
   ];
 ```
+
+### Fetch Data(FETCH QUERY)
+
+``` php
+  $select = $sql -> SELECT([
+                    'categories c' => [
+                      'c.name',
+                      'c.id'
+                    ],
+                    'posts p' => [
+                      'p.title',
+                      'p.date'
+                    ]
+                  ])
+                 -> QUERY_FETCH();
+```
+
+### Fetch Data(FETCH QUERY)
+
+``` php
+  $select = $sql -> SELECT([
+                    'categories c' => [
+                      'c.name',
+                      'c.id'
+                    ],
+                    'posts p' => [
+                      'p.title',
+                      'p.date'
+                    ]
+                  ])
+                 -> QUERY_FETCHALL();
+```
