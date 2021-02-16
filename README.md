@@ -266,3 +266,9 @@ SELECT Orders.order_id, Customers.CustomerName, Orders.OrderDate FROM Orders INN
                 -> PREPARE_FETCHALL(['ceyhun'])
 ```
 
+### DELETE
+```php
+   $delete = $sql -> DELETE('Customers')
+                  -> WHERE('CustomerName = ?')
+                  -> EXECUTE(['customer_name'])
+```
