@@ -284,3 +284,16 @@ SELECT Orders.order_id, Customers.CustomerName, Orders.OrderDate FROM Orders INN
                     ])
                   -> EXECUTE(['kadi_value', 'sifre_value', 'eposta_value'])
 ```
+
+### UPDATE
+```php
+   $update = $sql -> UPDATE([
+                       'uyeler' => [
+                         'uye_kadi',
+                         'uye_sifre',
+                         'uye_eposta'
+                       ]
+                     ])
+                  -> WHERE('uye_kadi = ?')
+                  -> EXECUTE(['kadi_value', 'sifre_value', 'eposta_value', 7])
+```
