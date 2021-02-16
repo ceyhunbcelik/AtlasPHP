@@ -272,3 +272,15 @@ SELECT Orders.order_id, Customers.CustomerName, Orders.OrderDate FROM Orders INN
                   -> WHERE('CustomerName = ?')
                   -> EXECUTE(['customer_name'])
 ```
+
+### INSERT
+```php
+   $insert = $sql -> INSERT([
+                      'uyeler' => [
+                        'uye_kadi',
+                        'uye_sifre',
+                        'uye_eposta'
+                      ]
+                    ])
+                  -> EXECUTE(['kadi_value', 'sifre_value', 'eposta_value'])
+```
