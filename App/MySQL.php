@@ -2,6 +2,11 @@
 
   $db = require_once(config('database'));
 
-  echo $db['name'];
+  /*
+
+  $db = $sql -> DB_HOST($db_config['host'])
+             -> DB_NAME($db_config['name'])
+             -> CONNECT($db_config['user'], $db_config['pass']);
+  */
 
 ?>
