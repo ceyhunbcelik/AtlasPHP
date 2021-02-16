@@ -233,3 +233,36 @@ SELECT Orders.order_id, Customers.CustomerName, Orders.OrderDate FROM Orders INN
                   ])
                  -> QUERY_FETCHALL();
 ```
+
+### Fetch Data(PREPARE FETCH)
+``` php 
+  $where = $sql -> SELECT([
+                    'categories c' => [
+                      'c.name',
+                      'c.id'
+                    ],
+                    'posts p' => [
+                      'p.title',
+                      'p.date'
+                    ]
+                  ])
+                -> WHERE('c.id = ? && p.id = ?')
+                -> PREPARE_FETCH(['5', '7'])
+```
+
+### Fetch Data(PREPARE FETCHALL)
+``` php 
+  $where = $sql -> SELECT([
+                    'categories c' => [
+                      'c.name',
+                      'c.id'
+                    ],
+                    'posts p' => [
+                      'p.title',
+                      'p.date'
+                    ]
+                  ])
+                -> WHERE('p.title = ?')
+                -> PREPARE_FETCHALL(['ceyhun'])
+```
+
