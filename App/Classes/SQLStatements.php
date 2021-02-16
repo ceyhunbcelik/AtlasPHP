@@ -145,13 +145,15 @@
         global $db;
 
         $query = $db -> prepare($this -> sql);
-        $query -> execute(func_get_args($values));
+        $query -> execute(func_get_args($values)[0]);
 
         $this -> sql = '';
 
         if(!$query){
           $error = $query -> errorInfo();
           return 'MySQL Error: ' . $error[2];
+        } else {
+          return 1;
         }
 
       } catch (PDOException $e) {
@@ -160,7 +162,7 @@
 
     }
 
-    function QUERY_FETCH($values){
+    function QUERY_FETCH(){
       try {
         global $db;
 
@@ -176,7 +178,7 @@
 
     }
 
-    function QUERY_FETCHALL($values){
+    function QUERY_FETCHALL(){
       try {
         global $db;
 
@@ -196,10 +198,8 @@
       try {
         global $db;
 
-        $values = implode(',', func_get_args($values));
-
         $prepare = $db -> prepare($this -> sql);
-        $prepare -> execute([$values]);
+        $prepare -> execute(func_get_args($values)[0]);
 
         $this -> sql = '';
 
@@ -217,10 +217,8 @@
       try {
         global $db;
 
-        $values = implode(',', func_get_args($values));
-
         $prepare = $db -> prepare($this -> sql);
-        $prepare -> execute([$values]);
+        $prepare -> execute(func_get_args($values)[0]);
 
         $this -> sql = '';
 
