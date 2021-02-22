@@ -51,7 +51,7 @@
 
     function WHERE($value){
 
-      $this -> sql .= ' WHERE ' . $value;
+      $this -> sql .= ' WHERE ' . $value . ' ';
       return $this;
     }
 
